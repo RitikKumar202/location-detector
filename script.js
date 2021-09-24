@@ -2,10 +2,6 @@ const button = document.querySelector("button");
 
 button.addEventListener("click", ()=>{
     if(navigator.geolocation){
-        // if browser support geolocation api
-        // geolocation.getCurrentPosition method is used to get current position of device
-        // it takes three parameters success, error, options. If everything is right then success
-        // callback function will call else error callback function will call. We dont need third parameter for this project
         button.innerText = "Allow to detect location";
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }else{
@@ -30,13 +26,13 @@ function onSuccess(position){
     })
 }
 function onError(error){
-    if(error.code == 1){  // if location is denied
+    if(error.code == 1){
         button.innerText = "You denied the request";
     }
-    else if(error.code == 2){  // if location is not available
+    else if(error.code == 2){
         button.innerText = "Location not available";
-    }else{   // if any other error occoured
+    }else{
         button.innerText = "Something went wrong";
     }
-    button.setAttribute("disabled", "true");  // is user denied the request then button will be disabled
+    button.setAttribute("disabled", "true");
 }
